@@ -20,4 +20,12 @@
     <ProjectReference Include="..\Orders.Share\Orders.Share.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <EditorConfigFiles Remove="C:\Users\Alvaro\Desktop\Aplicaciones y servicios web\E-ComerceProject\Orders\Orders.Backend\.editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="C:\Users\Alvaro\Desktop\Aplicaciones y servicios web\E-ComerceProject\Orders\Orders.Backend\.editorconfig" />
+  </ItemGroup>
+
 </Project>
