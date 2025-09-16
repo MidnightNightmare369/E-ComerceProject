@@ -10,10 +10,10 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
     private readonly DataContext _context;
     private readonly DbSet<T> _entity; //Representa la entidad(tabla) en la base de datos
 
-    public GenericRepository(DataContext context, DbSet<T> entity)
+    public GenericRepository(DataContext context)
     {
         _context = context;
-        _entity = entity;
+        _entity = context.Set<T>();
     }
 
     public virtual async Task<ActionResponse<T>> AddAsync(T entity)
