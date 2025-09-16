@@ -20,10 +20,12 @@ builder.Services.AddTransient<SeedDb>();
 builder.Services.AddScoped(typeof(IGenericUnitOfWork<>), typeof(GenericUnitOfWork<>));
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
+
+builder.Services.AddScoped(typeof(ICitiesRepository), typeof(CitiesRepository));
 builder.Services.AddScoped(typeof(ICountriesRepository), typeof(CountriesRepository));
 builder.Services.AddScoped(typeof(IStatesRepository), typeof(StatesRepository));
 
-
+builder.Services.AddScoped(typeof(ICitiesUnitOfWork), typeof(CitiesUnitOfWork));
 builder.Services.AddScoped(typeof(ICountriesUnitOfWork), typeof(CountriesUnitOfWork));
 builder.Services.AddScoped(typeof(IStatesUnitOfWork), typeof(StatesUnitOfWork));
 

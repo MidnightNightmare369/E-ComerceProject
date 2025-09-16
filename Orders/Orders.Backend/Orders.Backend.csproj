@@ -25,6 +25,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Repositories\Interfaces\iozv3efp.5u1~" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="C:\Users\Alvaro\Desktop\Aplicaciones y servicios web\E-ComerceProject\Orders\Orders.Backend\.editorconfig" />
   </ItemGroup>
 

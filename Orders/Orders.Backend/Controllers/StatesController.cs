@@ -2,6 +2,7 @@
 using Orders.Backend.Repositories.Interfaces;
 using Orders.Backend.UnitOfWork.Implements;
 using Orders.Backend.UnitOfWork.Interfaces;
+using Orders.Share.DTOs;
 using Orders.Share.Entities;
 
 namespace Orders.Backend.Controllers;
@@ -15,6 +16,28 @@ public class StatesController : GenericController<State>
     public StatesController(IGenericUnitOfWork<State> unitOfWork, IStatesUnitOfWork estatesUnitOfWork) : base(unitOfWork)
     {
         _statesUnitOfWork = estatesUnitOfWork;
+    }
+
+    [HttpGet("paginated")]
+    public override async Task<IActionResult> GetAsync([FromQuery] PaginationDTO pagination)
+    {
+        var response = await _statesUnitOfWork.GetAsync(pagination);
+        if (response.WasSuccess)
+        {
+            return Ok(response.Result);
+        }
+        return BadRequest();
+    }
+
+    [HttpGet("totalRecords")]
+    public override async Task<IActionResult> GetTotalRecordsAsync([FromQuery] PaginationDTO pagination)
+    {
+        var action = await _statesUnitOfWork.GetTotalRecordsAsync(pagination);
+        if (action.WasSuccess)
+        {
+            return Ok(action.Result);
+        }
+        return BadRequest();
     }
 
     [HttpGet]
