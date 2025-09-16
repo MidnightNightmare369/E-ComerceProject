@@ -28,4 +28,10 @@
     <None Include="C:\Users\Alvaro\Desktop\Aplicaciones y servicios web\E-ComerceProject\Orders\Orders.Backend\.editorconfig" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Data\CountriesStatesCities.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

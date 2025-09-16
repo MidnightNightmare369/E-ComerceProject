@@ -1,4 +1,6 @@
-﻿namespace Orders.Backend.Data;
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace Orders.Backend.Data;
 
 public class SeedDb
 {
@@ -12,8 +14,18 @@ public class SeedDb
     public async Task SeedAsync()
     {
         await _context.Database.EnsureCreatedAsync();
+        await CheckCountriesFullAsync();
         await CheckCountriesAsync();
         await CheckCategoriesAsync();
+    }
+
+    private async Task CheckCountriesFullAsync()
+    {
+        if (!_context.Countries.Any())
+        {
+            var countriesSQLScript = File.ReadAllText("Data\\CountriesStatesCities.sql");
+            await _context.Database.ExecuteSqlRawAsync(countriesSQLScript);
+        }
     }
 
     private async Task CheckCategoriesAsync()
