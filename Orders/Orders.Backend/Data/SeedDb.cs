@@ -15,7 +15,7 @@ public class SeedDb
     {
         await _context.Database.EnsureCreatedAsync();
         await CheckCountriesFullAsync();
-        await CheckCountriesAsync();
+        //await CheckCountriesAsync();
         await CheckCategoriesAsync();
     }
 
@@ -23,6 +23,7 @@ public class SeedDb
     {
         if (!_context.Countries.Any())
         {
+            _context.Database.SetCommandTimeout(300); // Añadi esta linea ya que mi pc tarda mucho en cargar y arroja error timeout
             var countriesSQLScript = File.ReadAllText("Data\\CountriesStatesCities.sql");
             await _context.Database.ExecuteSqlRawAsync(countriesSQLScript);
         }

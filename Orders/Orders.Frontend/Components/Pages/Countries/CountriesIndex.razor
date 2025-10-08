@@ -1,0 +1,33 @@
+﻿@page "/countries"
+
+<h3>CountriesIndex</h3>
+
+@if(countries == null)
+{
+    <Loading/>
+}
+else
+{
+    <table>
+
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+            </tr>
+        </thead>
+         
+        <tbody>
+            @foreach(var country in countries)
+            {
+                <tr>
+                    <td>@country.Id</td>
+                    <td>@country.Name</td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+    
+}
+
