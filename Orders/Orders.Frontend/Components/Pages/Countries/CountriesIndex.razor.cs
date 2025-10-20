@@ -29,6 +29,11 @@ public partial class CountriesIndex
         await LoadTotalRecordsAsync();
     }
 
+    private void StatesAction(Country country)
+    {
+        NavigationManager.NavigateTo($"/countries/details/{country.Id}");
+    }
+
     private async Task LoadTotalRecordsAsync()
     {
         loading = true;
@@ -100,7 +105,7 @@ public partial class CountriesIndex
             var parameters = new DialogParameters
             {
                 { "Id", id }
-            }; 
+            };
             dialog = await DialogService.ShowAsync<CountryEdit>("Editar país", parameters, options);
         }
         else
