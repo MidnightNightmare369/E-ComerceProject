@@ -14,7 +14,7 @@ public class State : IEntityWithName
 
     //Relacion con Country
     public int CountryId { get; set; }
-    public Country Country { get; set; } = null!;
+    public Country? Country { get; set; }
 
     //Relacion con City
     public ICollection<City>? Cities { get; set; }

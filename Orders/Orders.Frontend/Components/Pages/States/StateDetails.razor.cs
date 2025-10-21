@@ -171,7 +171,7 @@ public partial class StateDetails
     {
         var parameters = new DialogParameters
             {
-                { "Message", $"�Est�s seguro de que quieres eliminar la ciudad {city.Name}?" }
+                { "Message", $"¿Estas seguro de que quieres eliminar la ciudad {city.Name}?" }
             };
         var options = new DialogOptions { CloseButton = true, MaxWidth = MaxWidth.ExtraSmall, CloseOnEscapeKey = true };
         var dialog = await DialogService.ShowAsync<ConfirmDialog>("Confirmaci�n", parameters, options);

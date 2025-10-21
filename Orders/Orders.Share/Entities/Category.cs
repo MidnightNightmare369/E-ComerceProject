@@ -10,5 +10,5 @@ public class Category : IEntityWithName
     [Display(Name = "Categoria")]
     [MaxLength(100, ErrorMessage = "El campo {0} no puede tener mas de {1} catacteres.")]
     [Required(ErrorMessage = "El campo {0} es obligatorio")]
-    public string Name { get; set; } = null;
+    public string Name { get; set; } = null!;
 }
