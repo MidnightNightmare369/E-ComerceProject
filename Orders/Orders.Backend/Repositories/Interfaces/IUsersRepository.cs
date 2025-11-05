@@ -1,10 +1,15 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Orders.Share.Entities;
+using Orders.Share.DTOs;
 
 namespace Orders.Backend.Repositories.Interfaces;
 
 public interface IUsersRepository
 {
+    Task<SignInResult> LoginAsync(LoginDTO model);
+
+    Task LogoutAsync();
+
     Task<User> GetUserAsync(string email);
 
     Task<IdentityResult> AddUserAsync(User user, string password);
