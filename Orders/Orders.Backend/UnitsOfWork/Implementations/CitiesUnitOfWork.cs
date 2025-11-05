@@ -15,6 +15,8 @@ namespace Orders.Backend.UnitOfWork.Implements
             _citiesRepository = citiesRepository;
         }
 
+        public async Task<IEnumerable<City>> GetComboAsync(int stateId) => await _citiesRepository.GetComboAsync(stateId);
+
         public override Task<ActionResponse<IEnumerable<City>>> GetAsync(PaginationDTO pagination)
         {
             return _citiesRepository.GetAsync(pagination);

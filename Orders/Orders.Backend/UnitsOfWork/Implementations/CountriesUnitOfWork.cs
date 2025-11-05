@@ -15,6 +15,11 @@ public class CountriesUnitOfWork : GenericUnitOfWork<Country>, ICountriesUnitOfW
         _countriesRepository = countriesRepository;
     }
 
+    public async Task<IEnumerable<Country>> GetComboAsync()
+    {
+        return await _countriesRepository.GetComboAsync();
+    }
+
     public override async Task<ActionResponse<int>> GetTotalRecordsAsync(PaginationDTO pagination)
     {
         return await _countriesRepository.GetTotalRecordsAsync(pagination);
@@ -34,4 +39,6 @@ public class CountriesUnitOfWork : GenericUnitOfWork<Country>, ICountriesUnitOfW
     {
         return await _countriesRepository.GetAsync(id);
     }
+
+   
 }

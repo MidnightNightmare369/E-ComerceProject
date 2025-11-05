@@ -17,6 +17,13 @@ public class CountriesRepository : GenericRepository<Country>, ICountriesReposit
         _context = context;
     }
 
+    public async Task<IEnumerable<Country>> GetComboAsync()
+    {
+        return await _context.Countries
+            .OrderBy(c => c.Name)
+            .ToListAsync();
+    }
+
     public override async Task<ActionResponse<IEnumerable<Country>>> GetAsync(PaginationDTO pagination)
     {
         var queryable = _context.Countries
@@ -28,13 +35,13 @@ public class CountriesRepository : GenericRepository<Country>, ICountriesReposit
             queryable = queryable.Where(c => c.Name.ToLower().Contains(pagination.Filter.ToLower()));
         }
 
-            return new ActionResponse<IEnumerable<Country>>
+        return new ActionResponse<IEnumerable<Country>>
         {
             WasSuccess = true,
             Result = await queryable
-                .OrderBy(x => x.Name)
-                .Paginate(pagination)
-                .ToListAsync()
+            .OrderBy(x => x.Name)
+            .Paginate(pagination)
+            .ToListAsync()
         };
     }
 

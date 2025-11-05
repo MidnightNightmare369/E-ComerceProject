@@ -21,6 +21,13 @@ public class StatesController : GenericController<State>
         _statesUnitOfWork = estatesUnitOfWork;
     }
 
+    [AllowAnonymous]
+    [HttpGet("combo/{countryId:int}")]
+    public async Task<IActionResult> GetComboAsync(int countryId)
+    {
+        return Ok(await _statesUnitOfWork.GetComboAsync(countryId));
+    }
+
     [HttpGet("paginated")]
     public override async Task<IActionResult> GetAsync([FromQuery] PaginationDTO pagination)
     {
