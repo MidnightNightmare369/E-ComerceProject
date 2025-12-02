@@ -26,6 +26,26 @@ public class UsersRepository : IUsersRepository
         _signInManager = signInManager;
     }
 
+    public async Task<User> GetUserAsync(Guid userId)
+    {
+        var user = await _context.Users
+            .Include(u => u.City!)
+            .ThenInclude(c => c.State!)
+            .ThenInclude(s => s.Country)
+            .FirstOrDefaultAsync(x => x.Id == userId.ToString()); //el user id es un GUID pero se almacena como String
+        return user!;
+    }
+
+    public async Task<IdentityResult> ChangePasswordAsync(User user, string currentPassword, string newPassword)
+    {
+        return await _userManager.ChangePasswordAsync(user, currentPassword, newPassword);
+    }
+
+    public async Task<IdentityResult> UpdateUserAsync(User user)
+    {
+        return await _userManager.UpdateAsync(user);
+    }
+
     public async Task<SignInResult> LoginAsync(LoginDTO model)
     {
         return await _signInManager.PasswordSignInAsync(model.Email, model.Password, false, false);
@@ -35,7 +55,7 @@ public class UsersRepository : IUsersRepository
     {
         await _signInManager.SignOutAsync();
     }
-    
+
     public async Task<IdentityResult> AddUserAsync(User user, string password)
     {
         return await _userManager.CreateAsync(user, password);
